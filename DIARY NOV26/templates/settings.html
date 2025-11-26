@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - TrueU</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #ffffff, #8cb6ae);
+}
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-container img {
+  height: 40px;
+}
+.logo-container span {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+nav a:hover {
+  background: #e0f7fa;
+  color: #007BFF;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+.box {
+  background: rgba(255,255,255,0.9);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-height: 150px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+h2 {
+  margin-bottom: 15px;
+  color: #0c2c4e;
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+input[type="text"], input[type="email"], input[type="password"], select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 100%;
+}
+button {
+  padding: 12px 24px;
+  background-color: #1d4064;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  align-self: flex-start;
+}
+button:hover {
+  background-color: #0056b3;
+}
+@media(max-width: 600px){
+  .container {
+    padding: 0 10px;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+<a href="/dashboard">Dashboard</a>
+    <a href="/moodsummary">Mood Summary</a>
+    <a href="/settings">Settings</a>
+    <a href="/landingpage">Home</a>
+
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="box">
+    <h2>Update Profile</h2>
+    <form>
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email Address">
+      <button type="submit">Save Profile</button>
+    </form>
+  </div>
+
+  <div class="box">
+    <h2>Change Password</h2>
+    <form>
+      <input type="password" placeholder="Current Password">
+      <input type="password" placeholder="New Password">
+      <input type="password" placeholder="Confirm New Password">
+      <button type="submit">Change Password</button>
+    </form>
+  </div>
+
+  <div class="box">
+    <h2>Notification Preferences</h2>
+    <form>
+      <label>
+        <input type="checkbox"> Daily Prediction Notification
+      </label>
+      <label>
+        <input type="checkbox"> Daily Motivation Notification
+      </label>
+      <label>
+        <input type="checkbox"> Email Updates
+      </label>
+      <button type="submit">Save Preferences</button>
+    </form>
+  </div>
+
+</div>
+
+</body>
+</html>

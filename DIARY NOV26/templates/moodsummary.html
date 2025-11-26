@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Summary</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ffffff, #8cb6ae);
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .logo-container img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .logo-container span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+  }
+
+  nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+    white-space: nowrap;
+  }
+
+  nav a:hover {
+    background: #e0f7fa;
+    color: #007BFF;
+  }
+
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  select {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 16px;
+  }
+
+  th {
+    color: #555;
+  }
+
+  tr {
+    background: linear-gradient(120deg, #fafafa, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(142, 156, 146, 0.08);
+  }
+
+  tr.mood-happy { background: linear-gradient(120deg, #fffae6, #fff1b8); }
+  tr.mood-sad { background: linear-gradient(120deg, #d0e6ff, #a0c4ff); }
+  tr.mood-angry { background: linear-gradient(120deg, #ffd6d6, #ff9c9c); }
+  tr.mood-neutral { background: linear-gradient(120deg, #e0ffe0, #b8ffb8); }
+
+  td.mood-name img {
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 12px;
+    border-radius: 12px;
+  }
+
+  #mood-summary {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  @media(max-width: 900px){
+    .container { width: 95%; padding: 20px; }
+    td.mood-name img { height: 50px; }
+  }
+
+  @media (max-width: 700px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    nav {
+      width: 100%;
+      gap: 5px;
+    }
+    nav a {
+      font-size: 14px;
+      padding: 5px 8px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/moodsummary">Mood Summary</a>
+    <a href="/settings">Settings</a>
+    <a href="/landingpage">Home</a>
+
+<div class="container">
+  <h2>Select Month to View Mood Summary</h2>
+  <select id="month-selector">
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Mood</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody id="mood-table-body"></tbody>
+  </table>
+
+  <div id="mood-summary">Select a month to see your mood summary!</div>
+</div>
+
+<script>
+const tableBody = document.querySelector("#mood-table-body");
+const summaryDiv = document.querySelector("#mood-summary");
+const monthSelector = document.querySelector("#month-selector");
+
+
+</script>
+</body>
+</html>

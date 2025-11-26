@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>EDIT record #{{rows.personId}}</h1>
+    
+     <form action="/confirm-edit" method="POST">
+        <input name="fname" type="text" value="{{rows.fname}}">
+        <input name="lname" type="text" value="{{rows.lname}}">
+        <input name="DOB" type="text" value="{{rows.DOB}}">
+        <input name="personId" type="hidden" value = "{{rows.personId}}">
+        <input type="submit">
+    </form>
+    
+</body>
+</html>

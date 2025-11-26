@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>{{fname}}</div>
+    <a href="/insert-form">Add a records</a>
+    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
+    <h1>List records</h1>
+    <ul>
+        {% for row in rows %}
+            <li>
+                <img src="static/{{row.profilePic}}" width="50"/> 
+                
+                {{ row.personId }}, {{ row.fname }}, {{ row.lname }}, {{ row.DOB }} <a href="/edit/{{row.personId}}">/edit/{{row.personId}}</a>
+            <a href="/delete/{{row.personId}}">/delete/{{row.personId}}</a>
+                <a href="/show-user-moods/{{row.personId}}">/show-user-moods/{{row.personId}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

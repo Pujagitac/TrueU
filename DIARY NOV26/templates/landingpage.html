@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueU Diary - Landing Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      /* Background image with gradient overlay */
+      background:linear-gradient(to right, #ffffff, #8cb6ae);
+      background-size: cover;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 40px;
+    }
+
+    .logo-container span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: 0.3s;
+      margin-left: 10px;
+    }
+
+    nav a:hover {
+      background: #e0f7fa;
+      color: #007BFF;
+    }
+
+    .main-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 80px 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .left-box, .right-box {
+      flex: 1 1 400px;
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .left-box {
+      background: linear-gradient(135deg, #ebf5f4, #ffffff);
+    }
+
+    .right-box {
+      background: linear-gradient(135deg, #ebf5f4, #ffffff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .left-box:hover, .right-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.2em;
+      color: #0c2c4e;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      color: #0c2c4e;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .signup-button, .login-button {
+      margin-top: 20px;
+      padding: 14px 28px;
+      background-color: #082b2b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .signup-button:hover, .login-button:hover {
+      background-color: #1d635e;
+    }
+
+    .bottom-content {
+      max-width: 900px;
+      margin: 10px auto;
+      padding: 60px 30px;
+      background:         url('images/land.jpeg') no-repeat center center fixed, linear-gradient(135deg, #fff6f9, #e0f7fa);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+    }
+
+    @media (max-width: 768px) {
+      .main-section {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo-container">
+      <img src="static/images/logo.png" alt="Logo">
+      <span>TrueU</span>
+    </div>
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="login">Login</a>
+      <a href="signup">Sign Up</a>
+      <a href="admin">Admin</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <section class="main-section">
+    <div class="left-box">
+      <h1>Welcome to TrueU Diary</h1>
+      <p>Document your thoughts, emotions, and daily experiences in a safe and private space. Writing helps you reflect, grow, and understand yourself better.</p>
+      <p>Keep track of your moods and memories all in one beautiful and easy-to-use platform.</p>
+      <a href="signup" class="signup-button">Get Started</a>
+    </div>
+    <div class="right-box">
+      <h2>Join Today</h2>
+      <p>Create your free account and start your journey!</p>
+      <a href="login" class="login-button">Login</a>
+    </div>
+  </section>
+
+  <!-- Bottom Content -->
+  <section class="bottom-content">
+    <h2>Why Keep a Diary?</h2>
+    <p>Writing regularly improves mental clarity, emotional stability, and overall well-being. Track your growth, set goals, and preserve important life moments.</p>
+    <p>Through highs and lows, journaling can be therapeutic. With TrueU, your entries remain secure and private, accessible anytime, anywhere.</p>
+    <p>Start today and give your thoughts a home they deserve.</p>
+  </section>
+
+</body>
+</html>

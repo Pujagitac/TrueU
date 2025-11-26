@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #ffffff, #8cb6ae);
+  min-height: 100vh;
+  color: #333;
+}
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .logo-container img {
+  height: 40px;
+}
+header .logo-container span {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  margin-left: 15px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+nav a:hover {
+  background: #e0f7fa;
+  color: #007BFF;
+}
+.container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0c2c4e;
+}
+.section {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.section h2 {
+  margin-bottom: 15px;
+  color: #0c2c4e;
+}
+.table-container {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+th {
+  background: #1d4064;
+  color: white;
+  border-radius: 6px;
+}
+tr:hover {
+  background: #e0f7fa;
+}
+button {
+  padding: 8px 16px;
+  background: #1d4064;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover {
+  background: #0056b3;
+}
+input, select, textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.flex-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.flex-col {
+  flex: 1 1 300px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/moodsummary">Mood Summary</a>
+    <a href="/settings">Settings</a>
+    <a href="/landingpage">Home</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1>Admin Panel</h1>
+
+<div class="section">
+  <a href="/list-records">Manage Users</a>
+  <div class="table-container">
+ 
+  </div>
+</div>
+
+<div class="section">
+  <h2>Manage Diary Entries</h2>
+  <div class="table-container">
+    <table id="entries-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User ID</th>
+          <th>Date</th>
+          <th>Mood</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ul>
+        {% for row in rows %}
+            <li>
+                
+                {{ row.personId }}, {{ row.moodid }}, {{ row.diaryentry }}, {{ row.entrydate }} 
+        </li>
+        {% endfor %}
+    </ul>
+
+
+
+</div>
+
+<script>
+
+
+</script>
+</body>
+</html>

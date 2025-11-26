@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diary Entry - TrueU</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('static/images/back.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .navbar-left { display: flex; align-items: center; gap: 10px; }
+  .navbar-left img { height: 40px; }
+  .navbar-left span { font-weight: bold; font-size: 24px; color: #333; }
+  .navbar-right button {
+    background: rgba(255,255,255,0.6);
+    border: none; padding: 8px 16px;
+    border-radius: 8px; cursor: pointer; font-weight: bold;
+    color: #0c0101; transition: background 0.3s;
+  }
+  .navbar-right button:hover { background: #18c7b8; }
+
+  .main-container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    padding: 40px 20px;
+    gap: 20px;
+  }
+  .left-side {
+    flex: 2;
+    background: rgba(255,255,255,0.85);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    padding: 20px;
+  }
+  .left-side h2 {
+    text-align: center;
+    color: #0c2c4e;
+    margin-top: 0;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+  }
+  #date-display {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #0c2c4e;
+    font-size: 18px;
+  }
+
+  .mood-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .mood-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  .mood-buttons button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .mood-buttons img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+  .mood-buttons button.selected img {
+    transform: scale(1.2);
+    border: 2px solid #0c2c4e;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 400px;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    line-height: 2em;
+    background-image: linear-gradient(to bottom, #e0e0e0 1px, transparent 1px);
+    background-size: 100% 2em;
+    box-sizing: border-box;
+  }
+
+  #save-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 15px;
+    background: #1d4064;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  #save-btn:hover { background: #0056b3; }
+
+  .right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .zim-box {
+    background: rgba(255,255,255,0.9);
+    color: rgb(2, 17, 17);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .zim-box button {
+    margin-top: 15px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    background: white;
+    color: #000000;
+    cursor: pointer;
+  }
+  .zim-box button:hover { background: #e0f7fa; }
+
+  /* Modal styles */
+  #zim-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 80%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+  }
+  .modal-content {
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 90%;
+    height: 80%;
+    position: relative;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+
+  @media(max-width:900px){
+    .main-container { flex-direction: column; }
+    .right-side { width: 100%; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar">
+  <div class="navbar-left">
+    <img src="static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <div class="navbar-right">
+    <button onclick="window.location.href='/dashboard'">Dashboard</button>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="left-side">
+    <h2>Diary Entry</h2>
+    <div id="date-display"></div>
+
+    <div class="mood-heading">Select Mood:</div>
+    <div class="mood-buttons">
+      <button data-mood="happy" class="selected">
+        <img src="static/images/happy.jpg" alt="Happy">
+        Happy
+      </button>
+      <button data-mood="sad">
+        <img src="static/images/sad.jpg" alt="Sad">
+        Sad
+      </button>
+      <button data-mood="angry">
+        <img src="static/images/angry.jpg" alt="Angry">
+        Angry
+      </button>
+      <button data-mood="neutral">
+        <img src="static/images/neutral.jpg" alt="Neutral">
+        Neutral
+      </button>
+    </div>
+
+    <textarea id="diary-text" placeholder="Write your thoughts here..."></textarea>
+    <button id="save-btn">Save Entry</button>
+  </div>
+
+  <div class="right-side">
+    <div class="zim-box" id="open-zim">
+     ZIM Diary Page - Draw & Interact <br>
+
+      <img src = "static/images/zimd.png" width="500">
+            <a href="zimdiary">Open ZIM DIARY</a>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  // Date display
+  const dateDisplay = document.querySelector("#date-display");
+  const today = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  dateDisplay.textContent = today.toLocaleDateString(undefined, options);
+
+  // Mood buttons
+  let selectedMood = 'happy';
+  const moodBtns = document.querySelectorAll(".mood-buttons button");
+  moodBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      moodBtns.forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      selectedMood = btn.dataset.mood;
+    });
+  });
+
+  // Save entry
+  const saveBtn = document.querySelector("#save-btn");
+  const diaryText = document.querySelector("#diary-text");
+
+
+ 
+</script>
+
+</body>
+</html>

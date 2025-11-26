@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #ffffff, #8cb6ae);
+}
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-container img {
+  height: 40px;
+}
+.logo-container span {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+nav a:hover {
+  background: #e0f7fa;
+  color: #007BFF;
+}
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 80px);
+}
+.left-side, .right-side {
+  flex: 1 1 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.left-side input[type="text"] {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+.box {
+  background: rgba(239, 241, 241, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 192px;
+}
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+h2 {
+  margin-bottom: 15px;
+  color: #0c2c4e;
+  text-align: center;
+}
+button {
+  padding: 12px 24px;
+  background-color: #1d4064;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: #0056b3;
+}
+.predict-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-height: 250px;
+}
+.predict-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+img.predict-sphere {
+  width: 100%;
+  border-radius: 20px;
+}
+.click-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+#prediction-output {
+  margin-top: 20px;
+  padding: 25px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #0c2c4e;
+  background: white;
+  border: 4px solid #048080;
+  border-radius: 12px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+   width: 100%;
+}
+#motivation-output {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #0c2c4e;
+  background: #fafbfc;
+  padding: 20px;
+  border-radius: 12px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   border: 4px solid #048080;
+}
+@media(max-width: 900px){
+  .container {
+    flex-direction: column;
+  }
+  img.predict-sphere {
+    max-width: 300px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="landingpage">Home</a>
+    <a href="createentry">Create Diary</a>
+    <a href="moodsummary">Monthly Mood</a>
+    <a href="settings">Settings</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="left-side">
+    <input type="text" placeholder="Search Diary Entries...">
+
+    <div class="box">
+      <h2>Create Today's Diary Entry</h2>
+      <a href ="/createentry"><button>OPEN</button></a>
+
+    </div>
+
+    <div class="box">
+      <h2>Monthly Mood Summary</h2>
+      <a href ="/moodsummary"><button>OPEN</button></a></a>     
+    </div>
+
+  <div class="right-side">
+    <div class="box predict-container">
+      <h2>Find Your Prediction of the Day</h2>
+      <div class="predict-wrapper">
+        <img src="/static/images/predict.jpeg" alt="Prediction" class="predict-sphere" id="predict-sphere">
+        <div class="click-text" id="click-text">Click Me</div>
+      </div>
+      <div id="prediction-output"></div>
+    </div>
+
+    <div class="box">
+      <h2>Motivation of the Day</h2>
+      <div id="motivation-output"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const predictions = [
+  "A joyful surprise awaits you.","Be cautious in your choices today.","You will make someone smile.",
+  "Unexpected luck is coming.","Take time for yourself today.","New opportunities will appear.",
+  "A small challenge will teach you a lot.","You will reconnect with someone special.","Your creativity will shine.",
+  "Focus on what truly matters.","Today is perfect for a fresh start.","Your kindness will be rewarded.",
+  "Someone appreciates your effort.","You will discover something new.","Embrace change with open arms.",
+  "Your positivity is contagious.","A meaningful conversation is ahead.","Trust your instincts.",
+  "You will accomplish a task you delayed.","Your energy attracts good people.","Patience brings success.",
+  "You will learn an important lesson.","Take a break if you feel tired.","A happy memory will resurface.",
+  "Expect compliments today.","Your insight will help someone.","A surprise is coming in the mail.",
+  "New connections will bring joy.","You will feel inspired creatively.","A small act of courage pays off.",
+  "Your focus will bring results.","Good news comes from afar.","Someone seeks your advice.",
+  "Your hard work is recognized.","You will make progress today.","A fun opportunity appears.",
+  "Your curiosity leads to discovery.","Expect a positive message soon.","You will uplift someone's mood.",
+  "A hidden talent surfaces.","Today favors self-reflection.","You will solve a lingering problem.",
+  "An old friend may reach out.","Your optimism is your strength.","You will gain clarity on a decision.",
+  "A creative idea becomes useful.","You will find motivation in nature.","Small steps lead to big success.",
+  "You will feel proud of yourself.","Joy is around the corner.","An opportunity for learning arises."
+];
+
+const motivations = [
+  "Believe in yourself.","You are stronger than you think.","Every day is a new beginning.",
+  "Small steps count.","Keep moving forward.","You are capable of amazing things.","Your effort matters.",
+  "Stay positive.","Believe in your dreams.","Make today count.","Embrace challenges.","Stay curious.",
+  "Take time to breathe.","Focus on what matters.","You can achieve greatness.","Be kind to yourself.",
+  "Celebrate small wins.","Never stop learning.","Progress, not perfection.","You are enough.","Trust the process.",
+  "Keep shining.","Your actions matter.","Stay motivated.","One step at a time.","Positivity attracts positivity.",
+  "Your mind is powerful.","Face today with courage.","Your potential is limitless.","Gratitude brings happiness.",
+  "Believe in your journey.","Stay patient.","You are unique.","Take time for self-care.","Good things are coming.",
+  "Keep your head up.","Stay focused.","Your dreams are valid.","You are resilient.","Find joy in the small things.",
+  "Stay true to yourself.","You can do it.","Confidence is key.","Embrace positivity.","Your hard work pays off.",
+  "Keep your spirit high.","Motivation fuels success.","You are worthy."
+];
+
+const predictSphere = document.querySelector("#predict-sphere");
+const predictionOutput = document.querySelector("#prediction-output");
+const motivationOutput = document.querySelector("#motivation-output");
+
+predictSphere.addEventListener("click", () => {
+  const rand = Math.floor(Math.random() * predictions.length);
+  predictionOutput.textContent = predictions[rand];
+});
+
+function setDailyMotivation() {
+  const day = new Date().getDate();
+  const index = day % motivations.length;
+  motivationOutput.textContent = motivations[index];
+}
+
+setDailyMotivation();
+</script>
+
+</body>
+</html>

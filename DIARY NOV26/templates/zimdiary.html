@@ -1,0 +1,362 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zim Diary</title>
+
+    <script src="https://zimjs.org/cdn/1.5.0/createjs.js"></script>
+    <script src="https://zimjs.org/cdn/018/zim_min.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+    <script>
+
+        var scaling = FIT;
+        var width = 1080;
+        var height = 600;
+        var color = silver;
+        var outerColor = silver;
+
+        new Frame(scaling, width, height, color, outerColor, ready, ["dd1.png", "logo.png", "a.jpg", "b.jpg", "c.jpg",
+         "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "101.png", "11.png", "12.png",
+          "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png", "21.png", "22.png", "23.png",
+           "24.png", "25.png", "26.png", "cat.JPG", "cow.JPG", "dog.JPG", "fish.JPG", "frog.JPG", "horse.JPG", "mermaid.JPG",
+            "pig.JPG", "turtle.JPG"], "static/assets/");
+
+        function ready() {
+
+            zog("ready from ZIM Frame");
+
+            const book = new Pic("dd1.png").sca(.35).center().addTo();
+            const drawarea = new Container(book);
+            zog(drawarea.width)
+
+            const picArea = new Container(1000, 1000)
+                .center(book)       // sits on top of book
+                .addTo(book);       // important: attached to book
+
+            let penActive = true;
+
+            // Pen setup
+            const pen = new Pen(3, blue, "kitetail").center().addTo();
+
+            const penController = new MotionController({
+                target: pen,
+                type: "pressmove",
+
+                // container: drawarea,
+                damp: 0.2,
+                speed: 20,
+                mousedownIncludes: [book, picArea]
+                // onPressMove: function(e) {
+                //     if (penActive) this.target.draw(e);
+                // }
+            });
+
+            const penPoint = new Circle(6, "black").addTo(drawarea);
+            penPoint.alp(0.9);
+
+            S.on("mousemove", e => penPoint.pos(e.stageX, e.stageY));
+            S.on("mousedown", () => { if (penActive) penPoint.alp(1); });
+            S.on("mouseup", () => { if (penActive) penPoint.alp(0.5); });
+
+            // Stickers setup
+            const stickers = [
+                new Pic("logo.png").siz(50, 50).loc(500, 10).addTo(),
+                new Pic("a.png").drag().sca(.26).loc(4, 20).addTo(),
+                new Pic("d.png").drag().sca(.27).loc(4, 90).addTo(),
+                new Pic("b.png").drag().sca(.08).loc(4, 160).addTo(),
+                new Pic("c.png").drag().sca(.27).loc(75, 20).addTo(),
+                new Pic("e.png").drag().sca(.26).loc(75, 95).addTo(),
+                new Pic("f.png").drag().siz(40, 50).loc(75, 159).addTo(),
+                new Pic("1.png").drag().siz(40, 50).loc(4, 500).addTo(),
+                new Pic("2.png").drag().siz(40, 50).loc(4, 400).addTo(),
+                new Pic("3.png").drag().siz(40, 50).loc(4, 300).addTo(),
+                new Pic("4.png").drag().siz(40, 50).loc(40, 500).addTo(),
+                new Pic("5.png").drag().siz(40, 50).loc(40, 300).addTo(),
+                new Pic("6.png").drag().siz(40, 50).loc(75, 400).addTo(),
+                new Pic("7.png").drag().siz(40, 50).loc(4, 200).addTo(),
+                new Pic("8.png").drag().siz(40, 50).loc(6, 300).addTo(),
+                new Pic("9.png").drag().siz(40, 50).loc(40, 600).addTo(),
+                new Pic("10.png").drag().siz(40, 50).loc(75, 200).addTo(),
+                new Pic("11.png").drag().siz(40, 50).loc(4, 500).addTo(),
+                new Pic("12.png").drag().siz(40, 50).loc(4, 450).addTo(),
+                new Pic("13.png").drag().siz(40, 50).loc(4, 300).addTo(),
+                new Pic("14.png").drag().siz(40, 50).loc(40, 440).addTo(),
+                new Pic("15.png").drag().siz(40, 50).loc(40, 450).addTo(),
+                new Pic("16.png").drag().siz(40, 50).loc(40, 159).addTo(),
+                new Pic("17.png").drag().siz(40, 50).loc(6, 160).addTo(),
+                new Pic("18.png").drag().siz(40, 50).loc(40, 440).addTo(),
+                new Pic("19.png").drag().siz(40, 50).loc(40, 159).addTo(),
+                new Pic("20.png").drag().siz(40, 50).loc(40, 159).addTo(),
+                new Pic("21.png").drag().siz(40, 50).loc(6, 300).addTo(),
+                new Pic("22.png").drag().siz(40, 50).loc(6, 200).addTo(),
+                new Pic("23.png").drag().siz(40, 50).loc(6, 160).addTo(),
+                new Pic("24.png").drag().siz(40, 50).loc(75, 400).addTo(),
+                new Pic("25.png").drag().siz(40, 50).loc(75, 300).addTo(),
+                new Pic("26.png").drag().siz(40, 50).loc(75, 159).addTo(),
+            ];
+            const allColors = [
+                [pink, orange, blue, green],
+                [mist, charcoal, tin, light],
+                ["#FF3624", "#e2f705", "#05f9e2", "#ED0AF5"]
+            ];
+
+
+            let nextY = 95;   // starting vertical position
+            const gap = 20;    // space between stickers
+
+            stickers.forEach(sticker => {
+                sticker.on("click", () => {
+
+                    // Position sticker at fixed X and increasing Y
+                    //sticker.pos(S.width - sticker.width - 165, nextY);
+
+                    // Update Y for the next sticker
+                    // nextY += sticker.height + gap;
+
+                    // Sticker click: move to top-right & emit yellow triangles
+                    //stickers.forEach(sticker => {
+                    //sticker.on("click", (e) => {
+                    // Stick to top-right
+                    // sticker.pos(S.width - sticker.width - 175, 500);
+
+
+                    const emitter = new Emitter({ obj: new Label("⭐", 60, null), startPause: true }).center(sticker).spurt(10)
+
+                    // setTimeout(1, () => {
+                    //     emitter.stop();
+                    // }, 1);
+
+                });
+            });
+            // Labels
+
+
+            new Label("Write here! press hold to erase")
+                .alp(0.5).sca(0.3).pos(260, 100, RIGHT, TOP, S)
+                .animate({ wait: 10, props: { alpha: 0 } });
+
+            new Label("Click stickers to stick on page")
+                .alp(0.5).sca(0.3).pos(8, 5, LEFT, TOP, S)
+                .animate({ wait: 10, props: { alpha: 0 } });
+
+
+            const panel = new Panel({
+                width: 500,
+                height: 350,
+                bgColor: new GradientColor([yellow, dark], 70),
+                titleBar: "TrueU",
+                draggable: true,
+                content: {
+                    message: "Welcome To ZIM Diary!",
+                    color: lighter, // override default darker
+                    display: new TextInput({ placeholder: "enter name" }).sca(.7),
+                    align: CENTER,   // default
+                    spacingV: 25,    // 20 is default
+                    spacingH: 10,    // default
+                    buttonScale: .5, // default
+                    buttons: [ // or just a single button object
+                        {
+                            label: "READY",
+                            bgColor: new GradientColor([green, blue], 50),
+                            width: 300,
+                            call: () => {
+                                new Emitter({
+                                    obj: new Label("Hello " + panel.display.text + "🤍", 30, null, [green, blue, orange, yellow, pink]),
+                                    startPaused: true,
+                                    shrink: false,
+                                    life: 2,
+                                    gravity: 2,
+                                    force: { min: 2, max: 6 }
+                                }).loc(panel).spurt(55).on("spurtfizzed", e => {
+                                    e.target.dispose();
+                                });
+
+                                panel.animate({
+                                    alpha: 0,
+                                    time: .5,
+                                    call: () => panel.removeFrom()
+                                });
+
+                            }
+                        }
+                    ]
+                }
+            }).centerReg();
+
+
+            // PEN COLOR SELECTOR (Right-Side)
+            // ------------------------------------
+            const colors = [
+                "#D7263D", // deep pastel red
+                "#F46036", // rich coral
+                "#2E8B57", // forest mint
+                "#6C5B7B", // deep lavender
+                "#3A86FF", // strong pastel blue
+                "#6A4C93"  // plum purple
+            ];
+
+            colors.forEach((col, i) => {
+
+                const btn = new Circle(18, col)    // color applied correctly
+                    .addTo(S)
+                    .pos(S.width - 50, 40 + i * 60);
+
+                // click changes pen color
+                btn.tap(() => {
+                    pen.nib = "✒️"
+                    pen.color = [col, black];
+                    penPoint.color = col;
+                });
+
+
+
+                // optional white outline
+                new Circle(22, null, "white", 2)
+                    .addTo(S)
+                    .pos(S.width - 50, 120 + i * 60);
+            });
+
+            new Label("Select Pen Color", 5, null, "darkbrown", { backgroundColor: green })
+
+
+
+            new Button({
+                label: "Select Pen Color ",
+                width: 300,
+                height: 30,
+                backgroundColor: white,
+                color: 'turquiose',
+                corner: 10,
+            }).sca(.5).pos(S.width - 1070, 10, RIGHT).addTo(S);;
+
+            // click changes pen type
+
+            
+
+            new Button({
+                label: "hair",
+                width: 300,
+                height: 30,
+                backgroundColor: brown,
+                color: 'turquiose',
+                corner: 10,
+            }).sca(.5).pos(S.width - 1075, 540, RIGHT).addTo(S);;
+
+            const btntype = new Rectangle(18, blue)
+                .addTo(S)
+                .pos(0, BOTTOM, RIGHT);
+
+            btntype.tap(() => {
+                pen = new Pen(3, orange, "hair").center().addTo();
+            });
+
+
+            new Button({
+                label: "Barbwire",
+                width: 300,
+                height: 30,
+                backgroundColor: brown,
+                color: 'turquiose',
+                corner: 10,
+            }).sca(.5).pos(S.width - 1075, 510, RIGHT).addTo(S);;
+
+            const btntype1 = new Rectangle(18, blue)
+                .addTo(S)
+                .pos(0, BOTTOM, RIGHT);
+
+            btntype1.tap(() => {
+                pen.penType = "barbwire";
+            });
+
+            // loading a single pic
+            const loader = new Loader({
+                label: "UPLOAD",
+                width: 100,
+                height: 100,
+                corner: 50,
+                multiple: false // or don't bother and it just gets the first loaded
+            });
+            loader.on("loaded", e => {
+                e.bitmap.centerReg().drag();
+                loader.removeFrom();
+                S.update();
+            });
+            // if wanting a save button
+            const saveButton = new Button({ label: "SAVE" })
+                .siz(50, 20)
+                .pos(10, 10, RIGHT, BOTTOM)
+                .tap(() => {
+                    loader.save(S); // or some other container... can specify crop bounds too
+                });
+            
+           
+                
+            const piz = {
+                Cat: "cat.JPG",
+                Cow: "cow.JPG",
+                Dog: "dog.JPG",
+                Fish: "fish.JPG",
+                Frog: "frog.JPG",
+                Horse: "horse.JPG",
+                Mermaid: "mermaid.JPG",
+                Pig: "pig.JPG",
+                Turtle: "turtle.JPG"
+            };
+
+            function loadAnimalPic(file) {
+
+                if (picArea.currentPic) picArea.currentPic.removeFrom();
+
+                picArea.currentPic = new Pic(file)
+                    .centerReg(picArea)
+                    .siz(1000, 1000)
+                    .addTo(picArea);
+
+                stage.update();
+            }
+
+
+            // ------------------------------------
+            // 9 BUTTONS ON BOTTOM-LEFT
+            // ------------------------------------
+            let i = 0;
+            for (let label in piz) {
+
+                new Button({
+                    label,
+                    width: 150,
+                    height: 40,
+                    corner: 6
+                })
+                .pos(10, 500 - i * 50, LEFT, BOTTOM)
+                .tap(() => loadAnimalPic(piz[label]));
+
+                i++;
+            }
+
+
+
+
+
+
+
+
+
+
+        }
+
+    </script>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+
+</body>
+
+</html>

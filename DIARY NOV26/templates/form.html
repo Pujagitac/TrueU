@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if (role == 2) %}
+    <form action="submit-insert-form" method="POST">
+       <div><label>fname</label> <input name="fname" type="text"></div>
+        <div><label for="">lname</label><input name="lname" type="text"></div>
+       <div><label for="">DOB</label> <input name="DOB" type="text"></div>
+        <input type="submit">
+    </form>
+    {% else %}
+        <p>NOPE! YOU CANOOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}
+
+    
+    
+</body>
+</html>

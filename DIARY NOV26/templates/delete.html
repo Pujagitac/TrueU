@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Delete record #{{personId}}</h1>
+    <p>Are you sure you want to delete this record?</p>
+    <p>{{rows.personId}}, {{rows.fname}} , {{rows.lname}} , {{rows.DOB}}</p>
+
+    <form action="/confirm-delete" method="POST">
+        <input type="hidden" name="personId" value="{{personId}}">
+        <input type="submit" value="Confirm Delete">
+    </form>
+    <a href="/">Back home</a>
+</body>
+</html>
