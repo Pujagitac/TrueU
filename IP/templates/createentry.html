@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Diary Entry - TrueU</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/moodsummary">Monthly Mood Summary</a>
+    <a href="/search-records">Search Diary</a>
+    <a href="/settings">Settings</a>
+  </nav>
+   <div class="box small-box welcome-box">
+  <div class="welcome-content" style="display:flex; align-items:center;">
+
+    <img src="/static/images/{{ session.get('profilePic', 'catto-2.webp') }}" 
+         alt="Profile Picture" 
+         style="width:50px; height:50px; border-radius:50%; margin-right:10px; object-fit:cover;">
+
+    <div>
+
+      <div class="entry-title" style="font-size:1.2em; font-weight:bold;">
+        Welcome, {{ session.get('fname', 'User') }}
+      </div>
+
+      <div class="current-date" style="font-size:0.9em; color:#555;">
+        {{ current_date }}
+      </div>
+    </div>
+  </div>
+</header>
+    <h2 class="create">Create Diary Entry</h2>
+<div class="container3">
+  
+
+
+
+    <form class="createf" action="/submit-diary" method="POST">
+      <textarea class="createt" name="diaryEntry" placeholder="Write your diary here..." required></textarea>
+      <input type="date" name="entryDate" required>
+      <div class="mood-buttons">
+        <button type="button" data-mood="Happy"><img src="/static/images/happy.JPG" alt="Happy"><span>Happy</span></button>
+        <button type="button" data-mood="Sad"><img src="/static/images/sad.JPG" alt="Sad"><span>Sad</span></button>
+        <button type="button" data-mood="Angry"><img src="/static/images/angry.JPG" alt="Angry"><span>Angry</span></button>
+        <button type="button" data-mood="Neutral"><img src="/static/images/neutral.JPG" alt="Neutral"><span>Neutral</span></button>
+      </div>
+      <input type="hidden" name="moodName" id="moodName" required>
+      <button type="submit" class="submit-btn">Save Entry</button>
+    </form>
+  </div>
+</div>
+
+ 
+<script src="/static/main.js" defer></script>
+</body>
+</html>

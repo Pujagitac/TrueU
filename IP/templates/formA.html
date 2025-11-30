@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Entry</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/admin">Manage Users</a>
+    <a href="/adminA">Diary Entries</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+<h1>Add New Diary Entry</h1>
+
+<form action="/submit-insert-formA" method="POST">
+  <label>Person ID</label>
+  <input type="text" name="personId" required>
+
+  <label>Date</label>
+  <input type="date" name="entryDate" required>
+
+  <label>Mood</label>
+  <select name="moodName" required>
+    <option>Happy</option>
+    <option>Sad</option>
+    <option>Angry</option>
+    <option>Neutral</option>
+  </select>
+
+  <label>Diary Entry</label>
+  <textarea name="diaryEntry" required></textarea>
+
+  <button type="submit">Add Entry</button>
+</form>
+
+
+</div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>
+

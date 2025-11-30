@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Diary Entry</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU Admin</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/admin">Manage Entries</a>
+    <a href="/logout">Log Out</a>
+  </nav>
+</header>
+
+<form action="/confirm-editA" method="POST">
+  <input type="hidden" name="entryID" value="{{ entry.entryID }}">
+
+  <label>Person ID</label>
+  <input type="text" name="personId" value="{{ entry.personId }}" required>
+
+  <label>Date</label>
+  <input type="date" name="entryDate" value="{{ entry.entryDate }}" required>
+
+  <label>Mood</label>
+  <select name="moodName" required>
+    <option value="Happy" {% if entry.moodName=='Happy' %}selected{% endif %}>Happy</option>
+    <option value="Sad" {% if entry.moodName=='Sad' %}selected{% endif %}>Sad</option>
+    <option value="Angry" {% if entry.moodName=='Angry' %}selected{% endif %}>Angry</option>
+    <option value="Neutral" {% if entry.moodName=='Neutral' %}selected{% endif %}>Neutral</option>
+  </select>
+
+  <label>Diary Entry</label>
+  <textarea name="diaryEntry" required>{{ entry.diaryEntry }}</textarea>
+
+  <button type="submit">Update Entry</button>
+</form>
+
+<script src="/static/main.js" defer></script>
+</body>
+</html>

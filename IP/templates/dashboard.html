@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/moodsummary">Mood Summary</a>
+    <a href="/createentry">Create Diary</a>
+    <a href="/settings">Settings</a>
+    {% if session.get('role') == 2 %}
+    <a href="/admin">Admin Panel</a>
+    {% endif %}
+    <a href="/logout">Log Out</a>
+  </nav>
+      <div class="box small-box welcome-box">
+  <div class="welcome-content" style="display:flex; align-items:center;">
+
+    <img src="/static/images/{{ session.get('profilePic', 'catto-2.webp') }}" 
+         alt="Profile Picture" 
+         style="width:50px; height:50px; border-radius:50%; margin-right:10px; object-fit:cover;">
+
+    <div>
+
+      <div class="entry-title" style="font-size:1.2em; font-weight:bold;">
+        Welcome, {{ session.get('fname', 'User') }}
+      </div>
+
+     <div class="current-date" style="font-size:0.9em; color:#555;">
+    {{ current_date }}
+    </div>
+
+    </div>
+  </div>
+
+</div>
+
+</header>
+
+<div class="container">
+  <div class="left-side">
+    <div class="box small-box">
+
+      <a href="/createentry"><button>OPEN PERSONAL DIARY</button></a>
+    </div>
+
+    <div class="box">
+      <h2>Monthly Mood Panel</h2>
+      <div class="monthly-mood-list">
+        {% for entry in monthly_mood %}
+        <div class="monthly-mood-item">
+          {% if entry.moodName == 'Happy' %}
+          <img src="/static/images/happy.JPG" alt="Happy" class="mood-icon">
+          {% elif entry.moodName == 'Sad' %}
+          <img src="/static/images/sad.JPG" alt="Sad" class="mood-icon">
+          {% elif entry.moodName == 'Angry' %}
+          <img src="/static/images/angry.JPG" alt="Angry" class="mood-icon">
+          {% elif entry.moodName == 'Neutral' %}
+          <img src="/static/images/neutral.JPG" alt="Neutral" class="mood-icon">
+          {% endif %}
+          <strong>{{ entry.entryDate }}</strong>: {{ entry.moodName }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="small-box-group">
+      <div class="box small-box">
+        <h2>Play with ZIM Pen</h2>
+        <a href="/zimdiary"><button>ZIM DIARY</button></a>
+      </div>
+    <div class="box small-box moodspace-box">
+      <h2>See Mood Space</h2>
+      <p id="clue-display">Click 'Get Random Clue' to start!</p><br><br><br>
+      <p id="word-display" style="font-weight:bold; display:none;"></p>
+      <button id="new-clue-btn">Get Random Clue</button><br>
+      <button id="reveal-word-btn" style="display:none;">Reveal Word</button><br>
+    </div>
+      <div class="box small-box">
+        <h2>Search Diary</h2>
+        <a href="/search-records"><button>OPEN</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="box predict-container">
+      <h2>Find Your Prediction of the Day</h2>
+      <div class="predict-wrapper">
+        <img src="/static/images/predict.jpeg" alt="Prediction" id="predict-sphere">
+        <div class="click-text" id="click-text">Click Me</div>
+      </div>
+      <div id="prediction-output"></div>
+    </div>
+
+    <div class="box">
+      <h2>Motivation of the Day</h2>
+      <div id="motivation-output"></div>
+    </div>
+  </div>
+</div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>

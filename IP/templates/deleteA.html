@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Entry</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU Admin</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/admin">Manage Entries</a>
+    <a href="/">Log Out</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>Delete Entry?</h1>
+  <p>Are you sure you want to delete diary entry of Person ID {{ entry.personId }} on {{ entry.entryDate }}?</p>
+<form action="/confirm-deleteA" method="POST">
+  <input type="hidden" name="entryID" value="{{ entry.entryID }}">
+  <button type="submit">Yes, Delete</button>
+  <a href="/adminA"><button type="button">Cancel</button></a>
+</form>
+
+<script src="/static/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Manage Users</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/jsevents">Insert Predictions</a>
+    <a href="/adminA">Manage Entries</a>
+    <a href="/settings">Settings</a>
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+
+  </nav>
+</header>
+
+<div class="container">
+<h1>Admin Panel - Manage Users</h1>
+<div class="table-container">
+  <a href="/insert-form"><button>Add New User</button></a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>DOB</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.personId }}</td>
+        <td>{{ row.fname }}</td>
+        <td>{{ row.lname }}</td>
+        <td>{{ row.username }}</td>
+        <td>{{ row.DOB }}</td>
+        <td>{{ row.role }}</td>
+        <td>
+    <a href="/edit/{{ row.personId }}"><button>Edit</button></a>
+    <a href="/delete/{{ row.personId }}"><button>Delete</button></a>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>

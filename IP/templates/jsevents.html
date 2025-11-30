@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Manage Users</title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="http://127.0.0.1:5000/predictions">JSON Predictions</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/jsevents">Insert Predictions</a>
+    <a href="/adminA">Manage Entries</a>
+    <a href="/settings">Settings</a>
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+ 
+<div class="container">
+    <form id="personForm" name="personForm" action="/serverscript">
+        <label>Add prediction</label><input name="predictions" type="text" /><br>
+        <label>Add spirit</label><input name="spirit" type="text" /><br>
+        <input type="submit" class="login-btn1">      
+        <input type="reset" class="login-btn1">
+    </form>
+</div>
+
+
+
+
+    <script src="static/main.js" defer></script>
+</body>
+</html>

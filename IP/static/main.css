@@ -1,0 +1,584 @@
+/* Reset default margin, padding, and box-sizing for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic styling for body and html, including background gradient */
+body, html {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #ffffff, #8cb6ae);
+  min-height: 100%;
+}
+
+/* Header styling: flex layout, sticky, blurred background */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo container inside header */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Logo image size */
+.logo-container img {
+  height: 40px;
+}
+
+/* Logo text styling */
+.logo-container span {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Navigation links styling */
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+  margin-left: 10px;
+  background: #dae8eb;
+  font-size: 20px;
+}
+
+/* Hover effect for nav links */
+nav a:hover {
+  background: #e0f7fa;
+  color: #4e968a;
+}
+
+/* Main container for page content */
+.container {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+/* Mood summary container  */
+.container4 {
+  max-width: 1600px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+/* Left and right column layout */
+.left-side, .right-side {
+  flex: 1 1 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Generic content boxes */
+.box {
+  background: rgba(239, 241, 241, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 150px;
+}
+
+/* Hover effect for content boxes */
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Smaller boxes (optional) */
+.box.small-box {
+  min-height: auto;
+}
+
+/* Heading inside boxes */
+.box h2 {
+  margin-bottom: 15px;
+  color: #0c2c4e;
+  text-align: center;
+}
+
+/* Button styling */
+
+
+.signup-button, .login-button {
+      margin-top: 20px;
+      padding: 14px 28px;
+      background-color: #082b2b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .signup-button:hover, .login-button:hover {
+      background-color: #1d635e;
+    }
+
+
+
+
+button {
+  padding: 12px 24px;
+  background-color: #1d4064;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Buttons inside small boxes */
+.box.small-box button {
+  padding: 10px 20px;
+  font-size: 0.95em;
+}
+
+/* Form layout styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input and select fields styling */
+input[type="text"], input[type="email"], input[type="password"], select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 100%;
+}
+
+/* Mood summary section layout */
+.mood-summary {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+
+/* Mood buttons & Create Diary */
+.container3 { display: flex; flex-direction: column; gap: 20px; max-width: 900px; margin: 30px auto; padding: 0 20px; }
+.create { margin: 40px; color: #0c2c4e; text-align: left; }
+.createf { display: flex; flex-direction: column; gap: 15px; }
+.createt { padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 2em; min-width: 800px; min-height: 500px; resize: vertical; }
+input[type="date"] { padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em; }
+.mood-buttons 
+{ display: flex; gap: 15px; justify-content: center; }
+.mood-buttons button 
+{ padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+.mood-buttons button img 
+{ width: 40px; height: 40px; display: block; margin: 0 auto 5px; }
+.mood-buttons button:hover 
+{ transform: translateY(-3px); box-shadow: 0 5px 10px rgba(0,0,0,0.15); }
+button.submit-btn 
+{ background-color: #1d4064; color: white; }
+button.submit-btn:hover 
+{ background-color: #0056b3; }
+
+/* Individual mood card styling */
+.mood-card {
+  background: rgba(239,241,241,0.9);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 150px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Mood icon inside card */
+.mood-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* Message for mood summary section */
+.summary-message {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #0c2c4e;
+  margin-top: 20px;
+}
+
+/* Small mood icon used in diary entries */
+.mood-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* Prediction container on dashboard */
+.predict-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-height: 250px;
+}
+
+/* Wrapper for prediction image */
+.predict-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Prediction sphere image styling */
+#predict-sphere {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* Text overlay on prediction image */
+.click-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+/* Prediction and motivation output boxes */
+#prediction-output, #motivation-output {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #0c2c4e;
+  background: white;
+  border-radius: 12px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  width: 90%;          /* ⬅ Wider */
+  max-width: 600px;    /* ⬅ Prevents breaking layout */
+  margin-left: auto;   /* ⬅ Centers */
+  margin-right: auto;
+}
+
+/* Motivation box specific styling */
+#motivation-output {
+  background: #fafbfc;
+  border: 4px solid #048080;
+}
+
+/* Prediction box border */
+#prediction-output {
+  border: 4px solid #048080;
+}
+
+/* Table container for diary entries */
+.table-container {
+  overflow-x: auto;
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table header and cell styling */
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Table header background */
+th {
+  background: #1d4064;
+  color: white;
+}
+
+/* Table row hover effect */
+tr:hover {
+  background: #e0f7fa;
+}
+
+/* Diary entry card styling */
+.entry-card {
+  background: rgba(255,255,255,0.85);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+/* Lines inside entry card */
+.entry-line {
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+/* Action buttons container */
+.entry-actions {
+  margin-top: 10px;
+}
+
+/* Action buttons styling */
+.entry-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  background: #1d4064;
+  color: white;
+}
+
+/* Delete button styling */
+.entry-actions .delete {
+  background: #b30000;
+}
+
+/* Delete button hover */
+.entry-actions .delete:hover {
+  background: #7a0000;
+}
+
+/* Generic hover for action buttons */
+.entry-actions button:hover {
+  background: #0056b3;
+}
+
+/* Group of small boxes layout */
+.small-box-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  column-width: auto;
+}
+
+/* No records message styling */
+.no-records {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* signup form */
+
+
+.signup-container2 {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 80px auto;
+      background: rgba(255,255,255,0.85);
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .signup-container2 h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0c2c4e;
+    }
+
+    #signup-form2 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 8px rgba(0,123,255,0.2);
+    }
+
+    .signup-btn2 {
+      padding: 14px;
+      background-color: #1d6264;
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .signup-btn2:hover {
+      background-color: #0056b3;
+    }
+
+    .login-link2 {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .login-link2 a {
+      color: #007BFF;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .login-link2 a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .signup-container {
+        margin: 50px 20px;
+        padding: 30px 20px;
+      }
+    }
+
+
+
+/* login form */
+
+ .login-container1 {
+      position: relative;
+      z-index: 1;
+      max-width: 400px;
+      margin: 100px auto;
+      background: rgba(255,255,255,0.85);
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .login-container1 h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0c2c4e;
+    }
+
+    #login-form1 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input[type="email"], input[type="password"] {
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="email"]:focus, input[type="password"]:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 8px rgba(0,123,255,0.2);
+    }
+
+    .login-btn1 {
+      padding: 14px;
+      background-color: #1d4064;
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn1:hover {
+      background-color: #0056b3;
+    }
+
+    .signup-link1 {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .signup-link1 a {
+      color: #007BFF;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .signup-link1 a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .login-container {
+        margin: 50px 20px;
+        padding: 30px 20px;
+      }
+    }
+
+/* Responsive adjustments for smaller screens */
+@media(max-width: 900px){
+  .container {
+    flex-direction: column;
+  }
+  #predict-sphere {
+    max-width: 300px;
+  }
+}
+
+@media(max-width: 600px){
+  .container {
+    padding: 0 10px;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+}

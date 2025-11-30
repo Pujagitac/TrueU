@@ -1,0 +1,30 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+<link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+
+<body>
+    <h1>EDIT record #{{ row.personId }}</h1>
+
+<form action="/confirm-edit" method="POST">
+    <input type="hidden" name="personId" value="{{ row.personId }}">
+    <label>First Name</label>
+    <input name="fname" type="text" value="{{ row.fname }}">
+    <label>Last Name</label>
+    <input name="lname" type="text" value="{{ row.lname }}">
+    <label>DOB</label>
+    <input name="DOB" type="date" value="{{ row.DOB }}">
+    <button type="submit">Update</button>
+</form>
+<a href="/admin">Go Back</a>
+
+    <script src="/static/main.js" defer></script>  
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Results</title>
+ <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-container"><span>My Diary</span></div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/moodsummary">Monthly Mood</a>
+    <a href="/search-records">Search Diary</a>
+    <a href="/settings">Settings</a>
+    <a href="/logout">Log Out</a>
+  </nav>
+   <div class="box small-box welcome-box">
+  <div class="welcome-content" style="display:flex; align-items:center;">
+
+    <img src="/static/images/{{ session.get('profilePic', 'catto-2.webp') }}" 
+         alt="Profile Picture" 
+         style="width:50px; height:50px; border-radius:50%; margin-right:10px; object-fit:cover;">
+
+    <div>
+
+      <div class="entry-title" style="font-size:1.2em; font-weight:bold;">
+        Welcome, {{ session.get('fname', 'User') }}
+      </div>
+
+      <div class="current-date" style="font-size:0.9em; color:#555;">
+        {{ current_date }}
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  {% if results %}
+    {% for row in results %}
+    <div class="box">
+      <div class="entry-title">Entry #{{ row['entryID'] }}</div>
+      <div>{{ row['diaryEntry'] }}</div>
+      <div class="meta">Mood: {{ row['moodName'] }} • Date: {{ row['entryDate'] }}</div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p class="no-records">No records found.</p>
+  {% endif %}
+</div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>

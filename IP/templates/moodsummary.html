@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monthly Mood Summary - TrueU</title>
+ <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/createentry">Create Diary</a>
+    <a href="/settings">Settings</a>
+    <a href="/logout">Log Out</a>
+  </nav>
+
+        <div class="box small-box welcome-box">
+  <div class="welcome-content" style="display:flex; align-items:center;">
+
+    <img src="/static/images/{{ session.get('profilePic', 'catto-2.webp') }}" 
+         alt="Profile Picture" 
+         style="width:50px; height:50px; border-radius:50%; margin-right:10px; object-fit:cover;">
+
+    <div>
+
+      <div class="entry-title" style="font-size:1.2em; font-weight:bold;">
+        Welcome, {{ session.get('fname', 'User') }}
+      </div>
+
+      <div class="current-date" style="font-size:0.9em; color:#555;">
+        {{ current_date }}
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container4">
+  <div class="box">
+    <h2>Monthly Mood Summary</h2>
+    <div class="mood-summary">
+      {% for mood in mood_counts %}
+      <div class="mood-card">
+        {% if mood.moodName == 'Happy' %}
+        <img src="/static/images/happy.JPG" alt="Happy">
+        {% elif mood.moodName == 'Sad' %}
+        <img src="/static/images/sad.JPG" alt="Sad">
+        {% elif mood.moodName == 'Angry' %}
+        <img src="/static/images/angry.JPG" alt="Angry">
+        {% elif mood.moodName == 'Neutral' %}
+        <img src="/static/images/neutral.JPG" alt="Neutral">
+        {% endif %}
+        <div>{{ mood.moodName }}</div>
+        <div>{{ mood.count }} times</div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="summary-message">{{ summary_message }}</div>
+  </div>
+</div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>

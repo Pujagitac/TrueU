@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Diary Entries</title>
+<link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/admin">Manage Users</a>
+    <a href="/adminA">Diary Entries</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+  
+  {% for row in rows %}
+  <div class="entry-card">
+    <div><strong>Entry ID:</strong> {{ row.entryID }}</div>
+    <div><strong>Person ID:</strong> {{ row.personId }}</div>
+    <div><strong>Name:</strong> {{ row.fname }}</div>
+    <div><strong>Date:</strong> {{ row.entryDate }}</div>
+    <div><strong>Mood:</strong> {{ row.moodName }}</div>
+
+    <div class="entry-actions">
+      <a href="/editA/{{ row.entryID }}"><button>Edit</button></a>
+      <a href="/deleteA/{{ row.entryID }}"><button class="delete">Delete</button></a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script src="/static/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+ <link rel="stylesheet" href="/static/main.css">
+
+</head>
+<body>
+
+<body>
+    {% if (role == 2) %}
+      <div class="login-container1">
+
+        <form action="/submit-insert-form" method="POST">
+        <label>First</label> <input name="fname" type="text">
+        <label>lname</label><input name="lname" type="text">
+        <label>username</label> <input name="username" type="text">
+        <label>password</label><input name="password" type="text">
+        <label>role</label><input name="role" type="text" value = "1" readonly>
+        <label>DOB</label> <input name="DOB" type="text" placeholder ="YYYY-MM-DD">
+       
+      <input type="submit" class="login-btn1">
+    </form>
+     </div>
+
+    {% else %}
+    <div class="login-container1"></div>
+       <form action="/submit-insert-form" method="POST">
+        <div><label>fname</label> <input name="fname" type="text">
+        <div><label>lname</label><input name="lname" type="text">
+        <div><label>username</label> <input name="username" type="text">
+        <div><label>password</label><input name="password" type="text">
+        <div><label>role</label><input name="role" type="text" value = "1" readonly>
+        <div><label>DOB</label> <input name="DOB" type="text" placeholder ="YYYY-MM-DD">
+       
+      <input type="submit" class="login-btn1">
+    </form>
+    </div>
+    {% endif %}
+
+    
+<script src="/static/main.js" defer></script>    
+</body>
+</html>

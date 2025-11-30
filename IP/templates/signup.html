@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - TrueU Diary</title>
+ <link rel="stylesheet" href="/static/main.css">
+ 
+ 
+</head>
+<body>
+
+  <header>
+    <div class="logo-container2">
+      <img src="static/images/logo.png" alt="Logo">
+      <h2>TrueU</h2> 
+    </div>
+      <nav>
+    <a href="/">Home</a>
+  </nav>
+  </header>
+
+
+  <div class="signup-container2">
+    <h2>Create Your Account</h2>
+    <form action="/submit-insert-form" id="signup-form2" method="POST">
+      <input type="text" placeholder="First Name" name="fname" required>
+      <input type="text" placeholder="Last Name" name="lname" required>
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="text" placeholder="Password" name="password" required>
+      <input type="date" placeholder="Date of Birth" name="DOB" required>
+      
+      <input type="hidden" name="role" value="1">
+      <input type="submit" class="login-btn1">
+    </form>
+    <div class="login-link2">
+      Already have an account? <a href="/">Login</a>
+    </div>
+  </div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>

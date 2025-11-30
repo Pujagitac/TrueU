@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - TrueU</title>
+<link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="static/images/logo.png" alt="Logo">
+    <span>TrueU</span>
+  </div>
+  <nav>
+<a href="/dashboard">Dashboard</a>
+<a href="/logout">Log out</a>
+
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="box">
+    <h2>Update Profile</h2>
+  <form method="POST">
+    <input type="text" placeholder="First Name" name="fname" value="{{ user.fname }}">
+    <input type="text" placeholder="Last Name" name="lname" value="{{ user.lname }}">
+    <input type="text" placeholder="Profile Pic Name" name="profilePic" value="{{ user.profilePic }}">    
+    <button type="submit">Save Profile</button>
+  </form>
+  </div>
+
+
+
+  <div class="box">
+    <h2>Change Password</h2>
+<form method="POST">
+  <input type="password" placeholder="Current Password" name="current_password" required>
+  <input type="password" placeholder="New Password" name="new_password" required>
+  <button type="submit">Change Password</button>
+</form>
+  </div>
+
+<div class="box">
+    <h2>Contact TrueU Customer Service</h2>
+<form action="/submit-contactform" method="POST">
+  <input type="text" placeholder="Type your message" name="message" required>
+  <button type="submit">Send Message</button>
+</form>
+</div>
+  <div class="box">
+    <h2>Upload Profile Pic</h2>
+   <form method="POST" enctype="multipart/form-data" action="upload-file">
+         File: <input type="file" name="profilePic">
+    <input type="submit">
+  </div>
+</div>
+<script src="/static/main.js" defer></script>
+</body>
+</html>
